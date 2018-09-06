@@ -51,7 +51,8 @@ function Car(props) {
 class App extends React.Component {
 
     state = {
-        cars: cars
+        cars: cars,
+        visible: true
     };
 
     handleMarked(name) {
@@ -61,7 +62,18 @@ class App extends React.Component {
         this.setState({cars: cars});
     }
 
+    /**
+     * Toggle visibility of all content state var.
+     */
+    toggleHandler() {
+        this.setState({visible: !this.state.visible});
+    }
+
     renderCars() {
+        if (!this.state.visible) {
+            return null;
+        }
+
         return this.state.cars.map(car => {
             return <Car
                 car={car}
@@ -74,8 +86,15 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
+
+                <button onClick={() => this.toggleHandler()}>Toggle</button>
+
+                <hr/>
+
                 <div className="list">
+
                     {this.renderCars()}
+
                 </div>
             </div>
         );
