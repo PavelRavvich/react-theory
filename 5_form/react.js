@@ -52,8 +52,7 @@ class App extends React.Component {
 
     state = {
         cars: cars,
-        visible: true,
-        appTitle: 'Cars application'
+        visible: true
     };
 
     handleMarked(name) {
@@ -61,10 +60,6 @@ class App extends React.Component {
         const car = cars.find(c => c.name === name);
         car.marked = !car.marked;
         this.setState({cars: cars});
-    }
-
-    titleChangeHandler(title) {
-        this.setState({appTitle: title});
     }
 
     /**
@@ -89,24 +84,10 @@ class App extends React.Component {
     }
 
     render() {
-
-        const style = {
-            marginLeft: 20
-        };
-
         return (
             <div className="app">
-                <h1>{this.state.appTitle}</h1>
 
                 <button onClick={() => this.toggleHandler()}>Toggle</button>
-
-                <input
-                    type="text"
-                    placeholder="change title"
-                    style={style}
-                    onChange={(event) => this.titleChangeHandler(event.target.value)}
-                    value={this.state.appTitle}
-                />
 
                 <hr/>
 
